@@ -43,7 +43,6 @@ while choice != 'q'
 
     # 3) display message that unit was added
     message += "Unit #{number} was added."
-
    
   when "2"
     message += ''
@@ -61,16 +60,9 @@ while choice != 'q'
     chosen_unit = gets.chomp
     # 5) Get a reference to the unit from building.units
     # 6) Assign previously created tenant to the requested unit
-    building.get_available_units.select do |unit| 
-      if unit == chosen_unit
-        building.units.select do |apartment|
-          if apartment.number == chosen_unit
-            apartment.tenant = new_tenant
-          end
-        end
-      end 
-
-    end
+    new_tenant.unit = building.units.select {|unit| unit.number == chosen_unit}
+    new_tenant.unit[0].tenant = new_tenant
+    
     # 7) Display message that tenant X was added to unit Y
     message += "Tenant #{name} was added to unit #{chosen_unit}."
   when "3"
@@ -92,4 +84,5 @@ while choice != 'q'
       message += "I don't understand ..."
   end
   choice = menu message
+
 end

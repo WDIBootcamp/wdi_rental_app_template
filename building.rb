@@ -19,7 +19,7 @@ class Building
 
   # Returns the total sqft rented.
   def calc_total_sqft_rented
-    sqft += @units.select.map { |unit| unit.sqft }
+    @units.select { |unit| unit.available? }.map { |unit| unit.sqft }
 
   end
 
@@ -35,10 +35,9 @@ class Building
    
   end
 
-
   # Returns an array containing all occupied units
   def get_rented_units
-    # @units.select { |unit| not unit.available? }.map { |unit| unit.number }
+    @units.select { |unit| not unit.available? }.map { |unit| unit.number }
 
   end
 
