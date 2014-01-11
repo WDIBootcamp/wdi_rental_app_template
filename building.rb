@@ -12,13 +12,14 @@ class Building
 
   # Returns an array. Each element is a tenant's contact info
   def get_contact_list
-    contact_info()
+    @units.select { |unit| unit.available? == false }.map { |unit| 
+      unit.tenant }.map {|contact| contact.contact_info}
 
   end
 
   # Returns the total sqft rented.
   def calc_total_sqft_rented
-    @sqft += @sqft
+    sqft += @units.select.map { |unit| unit.sqft }
 
   end
 
@@ -37,7 +38,7 @@ class Building
 
   # Returns an array containing all occupied units
   def get_rented_units
-    @units.select { |unit| not unit.available? }.map { |unit| unit.number }
+    # @units.select { |unit| not unit.available? }.map { |unit| unit.number }
 
   end
 
@@ -48,3 +49,5 @@ class Building
   end
 
 end
+
+

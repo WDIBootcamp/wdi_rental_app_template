@@ -71,18 +71,20 @@ while choice != 'q'
       end 
 
     end
-
     # 7) Display message that tenant X was added to unit Y
     message += "Tenant #{name} was added to unit #{chosen_unit}."
   when "3"
-    message += 'option 3'
+    message += ''
     # Display list of all available units
+    message += "unrented units: #{building.get_available_units.join(", ")}"
   when "4"
-    message += 'option 4'
+    message += ""
     # Display a list of all tenants contact info
+    message += "Contact list: \n #{building.get_contact_list}"
   when "5"
     message += 'option 5'
     # Show total sqft rented
+
   when "6"
     message += 'option 6'
     # Show annual income of building
